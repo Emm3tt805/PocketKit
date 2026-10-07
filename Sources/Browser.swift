@@ -119,7 +119,11 @@ struct BrowserView: View {
                     .disabled(!model.canGoForward)
                 Spacer()
                 Button {
-                    model.isLoading ? model.webView.stopLoading() : model.webView.reload()
+                    if model.isLoading {
+                        model.webView.stopLoading()
+                    } else {
+                        model.webView.reload()
+                    }
                 } label: {
                     Image(systemName: model.isLoading ? "xmark" : "arrow.clockwise")
                 }
